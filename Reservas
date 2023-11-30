@@ -1,0 +1,51 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Reservas {
+    private JFrame frame;
+    private JTable table;
+    private DefaultTableModel model;
+
+    public Reservas() {
+        mostrarInterfazReservas();
+    }
+
+    public void mostrarInterfazReservas() {
+        frame = new JFrame("Reservas");
+        frame.setSize(400, 300);
+
+        JPanel panel = new JPanel();
+        model = new DefaultTableModel();
+        table = new JTable(model);
+
+        model.addColumn("Nombre del Médico");
+        model.addColumn("Especialidad");
+        model.addColumn("Horas Disponibles");
+        model.addColumn("Nombre del Cliente");
+
+        model.addRow(new Object[]{"", "", "", ""});
+
+        JButton cerrarButton = new JButton("CERRAR");
+        cerrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                // Cerrar la ventana y mostrar la interfaz inicial
+                Inicio.main(new String[]{});
+            }
+        });
+
+        panel.add(new JScrollPane(table));
+        panel.add(cerrarButton);
+
+        frame.add(panel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    public void recibirDatos(String[] datos) {
+        model.addRow(datos);
+    }
+}
