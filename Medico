@@ -1,0 +1,75 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Medico {
+    private static Reservas reservas;
+
+    public static void mostrarInterfazMedico() {
+        JFrame frame = new JFrame("Médico");
+        frame.setSize(300, 200);
+
+        JPanel panel = new JPanel();
+
+        JLabel nombreLabel = new JLabel("Doctor:");
+        nombreLabel.setBounds(10, 10, 80, 25);
+        JComboBox<String> nombreComboBox = new JComboBox<>(new String[]{"Dr. Smith", "Dr. Johnson", "Dr. Garcia", "Dr. Wang", "Dr. Kim"});
+        nombreComboBox.setBounds(100, 10, 150, 25);
+
+        JLabel especialidadLabel = new JLabel("Especialidad:");
+        especialidadLabel.setBounds(10, 40, 80, 25);
+        JComboBox<String> especialidadComboBox = new JComboBox<>(new String[]{"Cardiología", "Pediatría", "Oncología"});
+        especialidadComboBox.setBounds(100, 40, 150, 25);
+
+        JLabel horasLabel = new JLabel("Horas Disponibles:");
+        horasLabel.setBounds(10, 70, 120, 25);
+        JComboBox<String> horasComboBox = new JComboBox<>(new String[]{"9:00","10:00","11:00","12:00","13:00", "14:00", "15:00", "16:00"});
+        horasComboBox.setBounds(140, 70, 150, 25);
+
+        JLabel clienteLabel = new JLabel("Nombre del Cliente:");
+        clienteLabel.setBounds(10, 100, 120, 25);
+        JTextField clienteTextField = new JTextField(20);
+        clienteTextField.setBounds(140, 100, 150, 25);
+
+        JButton aceptarButton = new JButton("ACEPTAR");
+        aceptarButton.setBounds(10, 130, 100, 25);
+
+        aceptarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] datos = {
+                        nombreComboBox.getSelectedItem().toString(),
+                        especialidadComboBox.getSelectedItem().toString(),
+                        horasComboBox.getSelectedItem().toString(),
+                        clienteTextField.getText()
+                };
+
+                JOptionPane.showMessageDialog(null, "Datos guardados:\n" +
+                        "Nombre del Médico: " + datos[0] + "\n" +
+                        "Especialidad: " + datos[1] + "\n" +
+                        "Horas Disponibles: " + datos[2] + "\n" +
+                        "Nombre del Cliente: " + datos[3]);
+
+                if (reservas == null) {
+                    reservas = new Reservas();
+                }
+                reservas.recibirDatos(datos);
+            }
+        });
+
+        panel.setLayout(null);  // Configura el panel con null layout
+        panel.add(nombreLabel);
+        panel.add(nombreComboBox);
+        panel.add(especialidadLabel);
+        panel.add(especialidadComboBox);
+        panel.add(horasLabel);
+        panel.add(horasComboBox);
+        panel.add(clienteLabel);
+        panel.add(clienteTextField);
+        panel.add(aceptarButton);
+
+        frame.add(panel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}
