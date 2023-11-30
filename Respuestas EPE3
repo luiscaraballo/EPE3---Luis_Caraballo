@@ -1,0 +1,7 @@
+¿Qué es JAVA SWING? (02 PUNTOS)
+R:es una forma de programar interfaces graficas usando java
+
+B. ¿Qué es el ordenamiento por “MÉTODO BURBUJA”? (02 PUNTOS)
+R: es un algoritmo que sirve para ordenar objetos, funciona recorriendo una lista una y otra vez comparando los 
+elementos y cambia su posicion si estan en el orden incorrecto, el ciclo se repite hasta que todos los objetos 
+estan en el orden correcto
