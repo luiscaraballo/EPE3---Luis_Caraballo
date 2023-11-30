@@ -1,0 +1,51 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Inicio {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Inicio");
+            frame.setSize(300, 200);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            JPanel panel = new JPanel();
+            JButton medicoButton = new JButton("MÉDICO");
+            JButton reservasButton = new JButton("RESERVAS");
+            JButton cerrarButton = new JButton("CERRAR");
+
+            medicoButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Abrir la interfaz para carga de datos médicos
+                    Medico.mostrarInterfazMedico();
+                }
+            });
+
+            reservasButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Crear una instancia de Reservas y luego mostrar la interfaz
+                    new Reservas();
+                }
+            });
+
+            cerrarButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Cerrar la aplicación
+                    System.exit(0);
+                }
+            });
+
+            panel.add(medicoButton);
+            panel.add(reservasButton);
+            panel.add(cerrarButton);
+
+            frame.add(panel);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+}
